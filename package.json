@@ -1,8 +1,8 @@
 {
   "name": "react-file-dropdown",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Customizable file upload button with a dropdown list of files.",
-  "main": "index.js",
+  "main": "build/index.js",
   "author": "Harun Dulic <harundulic@gmail.com>",
   "license": "MIT",
   "homepage": "https://github.com/HarunD/react-file-dropdown",
@@ -10,10 +10,11 @@
   "repository": {
     "url": "https://github.com/HarunD/react-file-dropdown",
     "type": "git"
-  },  
+  },
   "scripts": {
     "styleguide": "styleguidist server",
-    "styleguide:build": "styleguidist build"
+    "styleguide:build": "styleguidist build",
+    "build": "webpack"
   },
   "dependencies": {
     "react": "^16.5.2",
@@ -30,6 +31,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-runtime": "^6.26.0",
     "react-styleguidist": "^7.3.10",
-    "webpack": "^4.20.2"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }
