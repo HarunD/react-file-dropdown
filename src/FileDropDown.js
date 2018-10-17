@@ -27,8 +27,6 @@ class FileDropDown extends PureComponent <Props, State> {
         isListVisible: false,
     };
 
-    fileInputRef = React.createRef();
-
     componentDidMount() {
         document.addEventListener('mousedown', this._handleOutsideClick);
     }
@@ -52,7 +50,7 @@ class FileDropDown extends PureComponent <Props, State> {
     }
 
     _handleAddFileClick = () : void => {
-        const INPUT = this.fileInputRef.current;
+        const INPUT = document.getElementById('FileInput'); // since ref does not work
         if(!INPUT) return;
         INPUT.click();
     }
@@ -69,7 +67,7 @@ class FileDropDown extends PureComponent <Props, State> {
 
                <button className="Adder" onClick={this._handleAddFileClick}>{r.addFileText || 'Add a file'}</button>
                <button className="Closer" onClick={this._hideList}>X</button>
-               <input ref={this.fileInputRef} type="file" hidden onChange={this._handleFileChange}/>
+               <input id="FileInput" type="file" hidden onChange={this._handleFileChange}/>
             </section>
         );
     }
