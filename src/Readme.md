@@ -13,6 +13,21 @@ handleAddFile = f => {
 
 <FileDropDown files={state.files} onFileAdded={handleAddFile} showCount={true}/>
 ```
+Example with array of strings
+
+```
+initialState = {
+    files: []
+}
+
+handleAddFile = f => {
+    let files = state.files;
+    files.push('/some/url');
+    setState({files});
+}
+
+<FileDropDown files={state.files} onFileAdded={handleAddFile} showCount={true}/>
+```
 
 Custom renderer without count
 
