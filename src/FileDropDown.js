@@ -6,7 +6,7 @@ import './style.css';
 
 type Props = {
     addFileText?: string,
-    files: Array <File>,
+    files: Array<File | string>,
     initiatorRenderer?: React.Element<'div'>;
     noFilesText?: string,
     onFileAdded: File => any,
@@ -63,7 +63,7 @@ class FileDropDown extends PureComponent <Props, State> {
         return (
             <section className="List">
                {(!r.files || r.files.length === 0) && <p className="Empty">{r.noFilesText || 'No files'}</p>}
-               {(r.files && r.files.length > 0) && r.files.map((f: File, k: number) => <a key={k} href={f.URL} target="_blank">{f.name}</a>)}
+               {(r.files && r.files.length > 0) && r.files.map((f: File | string, k: number) => <a key={k} href={ typeof f === 'string' ? f : f.URL} target="_blank">{typeof f === 'string' ? f : f.name}</a>)}
 
                <button className="Adder" onClick={this._handleAddFileClick}>{r.addFileText || 'Add a file'}</button>
                <button className="Closer" onClick={this._hideList}>X</button>
@@ -73,7 +73,7 @@ class FileDropDown extends PureComponent <Props, State> {
     }
 
     render() {
-        const FILES : Array<File> = this.props.files;
+        const FILES : Array<File | string> = this.props.files;
 
         return (
             <div className="FileDropDown">
