@@ -1,6 +1,6 @@
 {
   "name": "react-file-dropdown",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Customizable file upload button with a dropdown list of files.",
   "main": "build/index.js",
   "author": "Harun Dulic <harundulic@gmail.com>",
