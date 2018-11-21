@@ -7,7 +7,38 @@ initialState = {
 
 handleAddFile = f => {
     let files = state.files;
-    files.push({name: f.name, URL: '/some/url'});
+    files.push({name: '/some/url' , type : f.type });
+    setState({files});
+}
+
+<FileDropDown files={state.files} onFileAdded={handleAddFile} showCount={true}/>
+```
+
+Example of basic functionality with file icon
+
+```
+initialState = {
+    files: []
+}
+
+handleAddFile = f => {
+    let files = state.files;
+    files.push({name: '/some/url' , type : f.type });
+    setState({files});
+}
+
+<FileDropDown files={state.files} onFileAdded={handleAddFile} showCount={true} showIcon={true}/>
+```
+Example with array of strings
+
+```
+initialState = {
+    files: []
+}
+
+handleAddFile = f => {
+    let files = state.files;
+    files.push('/some/url');
     setState({files});
 }
 
@@ -38,7 +69,7 @@ initialState = {
 
 handleAddFile = f => {
     let files = state.files;
-    files.push({name: f.name, URL: '/some/url'});
+    files.push({name: '/some/url', type : f.type});
     setState({files});
 }
 

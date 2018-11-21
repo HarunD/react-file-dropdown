@@ -1,6 +1,8 @@
 // @flow
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import image from './image.svg'
+import file from './file.svg'
 
 import './style.css';
 
@@ -10,7 +12,8 @@ type Props = {
     initiatorRenderer?: React.Element<'div'>;
     noFilesText?: string,
     onFileAdded: File => any,
-    showCount?: boolean;
+    showCount?: boolean,
+    showIcon?: boolean
 };
 
 type State = {
@@ -18,8 +21,8 @@ type State = {
 };
 
 type File = {
-    URL: string,
     name: string,
+    type: string,
 };
 
 class FileDropDown extends PureComponent <Props, State> {
@@ -63,8 +66,14 @@ class FileDropDown extends PureComponent <Props, State> {
         return (
             <section className="List">
                {(!r.files || r.files.length === 0) && <p className="Empty">{r.noFilesText || 'No files'}</p>}
-               {(r.files && r.files.length > 0) && r.files.map((f: File | string, k: number) => <a key={k} href={ typeof f === 'string' ? f : f.URL} target="_blank">{typeof f === 'string' ? f : f.name}</a>)}
+                {(r.files && r.files.length > 0) &&
+                    r.files.map((f: File | string, k: number) => {
+                        const URL = typeof f === 'string' ? f : f.name;
+                        const isFileImage = ['image/png', 'image/jpeg', 'image/jpg'].includes(f.type);
+                        const renderIcon = <img src={isFileImage ? image : file} />
 
+                        return <a key={k} href={URL} target="_blank">{r.showIcon && renderIcon}{URL}</a>;
+                    })} 
                <button className="Adder" onClick={this._handleAddFileClick}>{r.addFileText || 'Add a file'}</button>
                <button className="Closer" onClick={this._hideList}>X</button>
                <input id="FileInput" type="file" hidden onChange={this._handleFileChange}/>
